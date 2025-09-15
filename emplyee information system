@@ -1,0 +1,96 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class employee {
+inline void title();
+private:
+   string name;
+   int employee_id;
+   string department;
+   string address;
+   long int contact;
+   string date;
+   static int count;
+public:
+   employee() {
+     
+      cout<<"Default constructor called \n";
+       name = "";
+       employee_id = 0;
+       department = "";
+       address = "";
+       contact = 0;
+       date = "";
+       count++; 
+   }
+   employee(string n, int id, string d, string ad, long int con, string da) {
+       cout << "Parameterized constructor called \n"; //parameterized constructor
+       name = n;
+       employee_id = id;
+       department = d;
+       address = ad;
+       contact = con;
+       date = da;
+       count++;
+   }
+   employee(const employee &obj) {
+       cout << "Copy constructor called\n";
+       name = obj.name;
+       employee_id =obj.employee_id;
+       department = obj.department;
+       address = obj.address;
+       contact = obj.contact;
+       date =obj.date;
+       count++;
+   } ~employee() { 
+       cout << "\nDestructor for: " << name << endl;
+       count--;
+   }
+   void accept();
+   void display();
+   static void show_count() {
+       cout << "\nTotal Employees: " << count << endl;
+   }   
+};
+int employee::count = 0;
+void employee::accept() {
+   cout << "Enter name of the employee: ";
+   cin >> name;
+   cout << "Enter employee's ID: ";
+   cin >> employee_id;
+   cout << "Enter employee's department: ";
+   cin >> department;
+   cout << "Enter employee's address: ";
+   cin >> address;
+   cout << "Enter employee's' contact no: ";
+   cin >> contact;
+   cout << "Enter employee's' date of joining: ";
+   cin >> date;
+}
+void employee::display() {
+   cout << "\nName of employee: " << name << endl;
+   cout << "Employee ID: " << employee_id << endl;
+   cout << "Department: " << department << endl;
+   cout << "Address: " << address << endl;
+   cout << "Contact No: " << contact << endl;
+   cout << "Date of Joining: " << date << endl;
+}
+  inline void title();
+inline void employee::title() {
+   cout << "Welcome to employee information system!! Please enter your details." << endl;
+}
+int main() {
+   employee obj1;
+   obj1.accept();
+   obj1.display();
+ 
+   employee obj2("ram", 107, "IT", "PUNE", 9506287445, "29-09-2006");
+ obj2.display();
+    employee obj3 = obj2;
+   obj3.display();
+   employee::show_count();
+   employee*ptr=new employee("shyam",107,"HR","Mumbai",998765788,"22-09-2001");
+   ptr->display();
+   delete ptr;
+  return 0;
+}
