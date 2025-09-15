@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+class Complex {
+private:
+	float real;
+	float imag;
+
+public:
+	Complex() {
+    	real = 0;
+    	imag = 0;
+	}
+	Complex(float r, float i) {
+    	real = r;
+    	imag = i;
+	}
+	Complex(const Complex &obj) {
+    	real = obj.real;
+    	imag = obj.imag;
+	}
+	Complex operator+(Complex c) {
+    	Complex temp;
+    	temp.real = real + c.real;
+    	temp.imag = imag + c.imag;
+    	return temp;
+	}
+	friend Complex operator*(Complex c1, Complex c2);
+	friend istream & operator>>(istream&, Complex&);
+	friend ostream & operator<<(ostream&, const Complex&);
+};
+
+Complex operator*(Complex c1, Complex c2) {
+	Complex temp;
+	temp.real = c1.real * c2.real - c1.imag * c2.imag;
+	temp.imag = c1.real * c2.imag + c1.imag * c2.real;
+	return temp;
+}
+
+istream & operator>>(istream & in, Complex & obj) {
+	cout << "enter realno: ";
+	in >> obj.real;
+	cout << "enter imag no: ";
+	in >> obj.imag;
+	return in;
+}
+
+ostream & operator<<(ostream & out, const Complex & obj) {
+	out << obj.real << "+";
+	out << obj.imag << "i";
+	return out;
+}
+
+int main() {
+	Complex c1, c2;
+
+	cin >> c1;
+	cin >> c2;
+
+	cout << "\nFirst complex number: " << c1 << endl;
+	cout << "Second complex number: " << c2 << endl;
+
+	Complex sum = c1 + c2;
+	Complex product = c1 * c2;
+
+	cout << "\nSum: " << sum << endl;
+	cout << "Product: " << product << endl;
+
+	return 0;
+}
