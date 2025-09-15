@@ -1,0 +1,104 @@
+ #include <iostream>
+#include <string>
+using namespace std;
+
+class Staff {
+protected:
+    int staffID;
+    string name;
+    string department;
+
+public:
+    void accept() {
+        cout << "\nEnter Staff ID: ";
+        cin >> staffID;
+        cin.ignore();
+        cout << "Enter Name: ";
+        getline(cin, name);
+        cout << "Enter Department: ";
+        getline(cin, department);
+    }
+
+    void display() {
+        cout << "\nWelcome to educational institution system" << endl;
+        cout << "Staff ID: " << staffID << endl;
+        cout << "Name: " << name << endl;
+        cout << "Department: " << department << endl;
+    }
+};
+
+class Teacher : public Staff {
+private:
+    string subject;
+    string experience;
+
+public:
+    void acceptDetails() {
+        Staff::accept();
+        cout << "Enter Subject: ";
+        getline(cin, subject);
+        cout << "Enter Experience: ";
+        getline(cin, experience);
+    }
+
+    void displayDetails() {
+        Staff::display();
+        cout << "Subject: " << subject << endl;
+        cout << "Experience: " << experience << endl;
+    }
+};
+
+class SupportStaff : public Staff {
+private:
+    string duty;
+    string timing;
+
+public:
+    void acceptDetails() {
+        Staff::accept();
+        cout << "Enter Duty: ";
+        getline(cin, duty);
+        cout << "Enter Timing: ";
+        getline(cin, timing);
+    }
+
+    void displayDetails() {
+        Staff::display();
+        cout << "Duty: " << duty << endl;
+        cout << "Timing: " << timing << endl;
+    }
+};
+
+
+
+int main() {
+ 
+int n;    
+cout<<"\n Enter no of teachers : ";
+cin>>n;
+Teacher ar[n];
+for(int i =0;i<n;i++){
+    cout<<"\nEnter details of teacher"<<i+1<<":";
+    ar[i].acceptDetails();
+}
+
+int m;
+cout<<"\n Enter no of supporting staff : ";
+cin>>m;
+
+SupportStaff de[m];
+for(int i =0;i<m;i++){
+    cout<<"\nEnter details of support staff "<<i+1<<":";
+    de[i].acceptDetails();
+}
+
+cout<<"\n----Teacher details---"<<endl;
+for(int i=0; i<n;i++){
+    ar[i].displayDetails();
+}
+cout<<"\n----Support staff details---"<<endl;
+for(int i=0; i<m;i++){
+    de[i].displayDetails();
+}
+    return 0;
+}
