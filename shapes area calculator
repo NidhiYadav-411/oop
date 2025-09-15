@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+class Shape {
+protected:
+    float dim1, dim2;
+
+public:
+    void input() {
+        cout << "Enter first dimension: ";
+        cin >> dim1;
+        cout << "Enter second dimension: ";
+        cin >> dim2;
+    }
+
+    virtual void display() {
+        cout << "No area formula for base Shape." << endl;
+    }
+};
+
+class Triangle : public Shape {
+public:
+    void display() {
+        float area = 0.5 * dim1 * dim2;
+        cout << "Area of Triangle: " << area << endl;
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    void display() {
+        float area = dim1 * dim2;
+        cout << "Area of Rectangle: " << area << endl;
+    }
+};
+
+int main() {
+    Shape*ptr;
+    cout << "Triangle:" << endl;
+    Triangle tri;
+    ptr=&tri;
+    ptr->input();
+    ptr->display();
+    cout << "\nRectangle:" << endl;
+    Rectangle rect;
+    ptr=&rect;
+    ptr->input();
+    ptr->display();
+
+    return 0;
+}
