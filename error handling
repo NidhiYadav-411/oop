@@ -1,0 +1,30 @@
+//PROBLEM STATEMENT: Design a program with the following functionalities:
+1. A function to read two numbers(Double type)
+2. A function to calculate division of these two numbers
+3. A try block to detect and throw an exception when divide by zero condition occurs
+4. Appropriate catch block to handle the exception thrown
+
+CODE
+#include <iostream>
+using namespace std;
+int main() {
+    double num1, num2, result;
+
+    cout << "Enter first number: ";
+    cin >> num1;
+    cout << "Enter second number: ";
+    cin >> num2;
+
+    try {
+        if (num2 == 0) {
+            throw 0;
+        }
+        result = num1 / num2;
+        cout << "Result = " << result << endl;
+    }
+    catch (int) {
+        cout << "Error: Division by zero!" << endl;
+    }
+    return 0;
+}
+
